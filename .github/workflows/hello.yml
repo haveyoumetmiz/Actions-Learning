@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4  
+      
       - name: Print a welcome message
         run: echo "Hello from GitHub Actions 🚀"
 
