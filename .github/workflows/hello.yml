@@ -7,21 +7,12 @@ on:
       - main
 
 jobs:
-  say-hello:
+  run-actions:
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        action: [my-js-action, my-composite-action, my-docker-action]
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4  
-      
-      - name: Print a welcome message
-        run: echo "Hello from GitHub Actions 🚀"
-
-      - name: Run JavaScript Action
-        uses: ./my-js-action
-
-      - name: Run Composite Action
-        uses: ./my-composite-action
-
-      - name: Run Docker Action
-        uses: ./my-docker-action
+      - uses: actions/checkout@v4
+      - name: Run action ${{ matrix.action }}
+        uses: ./${{ matrix.action }}
