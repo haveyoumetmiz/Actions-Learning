@@ -3,4 +3,7 @@ runs:
   using: "composite"
   steps:
     - run: echo "Hello from step 1!"
+      shell: bash
+
     - run: echo "Hello from step 2!"
+      shell: bash
