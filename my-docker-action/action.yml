@@ -2,3 +2,6 @@ name: "Hello Docker Action"
 runs:
   using: "docker"
   image: "Dockerfile"
+branding:
+    icon: "mic"
+    color: "purple"

@@ -1,0 +1,25 @@
+name: Types Of GitHub Actions
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  js-action:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./my-js-action
+
+  composite-action:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./my-composite-action
+
+  docker-action:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./my-docker-action
