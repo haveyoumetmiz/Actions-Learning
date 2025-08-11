@@ -13,3 +13,12 @@ jobs:
     steps:
       - name: Print a welcome message
         run: echo "Hello from GitHub Actions 🚀"
+
+      - name: Run JavaScript Action
+        uses: ./my-js-action
+
+      - name: Run Composite Action
+        uses: ./my-composite-action
+
+      - name: Run Docker Action
+        uses: ./my-docker-action

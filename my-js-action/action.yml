@@ -1,0 +1,4 @@
+name: "Hello JavaScript Action"
+runs:
+  using: "node12"
+  main: "index.js"

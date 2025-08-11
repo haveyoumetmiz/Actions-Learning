@@ -1,0 +1,6 @@
+name: "Hello Composite Action"
+runs:
+  using: "composite"
+  steps:
+    - run: echo "Hello from step 1!"
+    - run: echo "Hello from step 2!"
