@@ -1,0 +1,14 @@
+name: Manual Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  runs-manual-tasks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Manual trigger info
+        run: |
+          echo "This workflow was triggered manually 🚀"
