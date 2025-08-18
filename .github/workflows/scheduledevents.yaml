@@ -1,4 +1,4 @@
-name: Push Events
+name: Scheduled Events
 
 on:
   schedule:
