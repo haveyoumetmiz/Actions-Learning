@@ -1,0 +1,13 @@
+name: Push Events
+
+on:
+  schedule:
+    - cron: "0,55 * * * 0"   # Every Sunday at minute 0 and 55 of every hour
+
+jobs:
+  show-info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: events info on Sunday every 55 minutes
+        run: |
+          echo "This runs every 55 minutes on Sundays"
