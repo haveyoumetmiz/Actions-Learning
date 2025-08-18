@@ -1,0 +1,14 @@
+name: Issue Events
+
+on:
+  issues:
+    types:
+      - opened   # runs only when a new issue is opened
+
+jobs:
+  show-info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: issue event info
+        run: |
+          echo "An issue was just opened 🚨"
