@@ -1,4 +1,4 @@
-name: Push Events
+name: All Events
 
 on: push
 
