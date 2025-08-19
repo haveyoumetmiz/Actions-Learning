@@ -6,7 +6,7 @@ on:
       param1:
         description: 'Description for param1'
         required: true
-        default: 'Hello World"
+        default: 'Hello World'
 
 jobs:
   runs-manual-tasks:
@@ -14,6 +14,7 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+
       - name: Manual trigger info
         run: |
-          echo "This workflow was triggered manually with param1: ${{ github.event.inputs.param1}}"
+          echo "This workflow was triggered manually with param1: ${{ github.event.inputs.param1 }}"
