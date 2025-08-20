@@ -7,6 +7,6 @@
     "build": "echo \"Building...\"",
     "deploy": "echo \"Deploying...\""
   },
-  "author": "Your Name",
+  "author": "haveyoumetmiz",
   "license": "MIT"
 }
