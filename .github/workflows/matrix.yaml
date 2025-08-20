@@ -3,17 +3,24 @@
 #on: push
 
 #jobs:
-#  ubuntu22:
-#    runs-on: ubuntu-22.04
+#  ubuntu-latest:
+#    runs-on: ubuntu-latest
 #    steps:
-#      - uses: actions/checkout@v4
+#      - name: Checkout code
+#        uses: actions/checkout@v4
+#      - name: Print message
+#        run: echo "Running on ubuntu-latest"
 
-#  ubuntu20:
-#    runs-on: ubuntu-20.04
+#  windows-latest:
+#    runs-on: windows-latest
 #    steps:
-#      - uses: actions/checkout@v4
+#      - name: Checkout code
+#        uses: actions/checkout@v4
+#      - name: Print message
+#        run: echo "Running on windows-latest"
 
-name: Matrix Workflow
+
+name: Matrix Workflow with OS
 
 on: push
 
@@ -22,7 +29,11 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-22.04, ubuntu-20.04]
+        os: [ubuntu-latest, windows-latest]
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Print OS Info
+        run: echo "Running on ${{ matrix.os }}"
