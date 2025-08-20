@@ -3,44 +3,17 @@
 #on: push
 
 #jobs:
-#  ubuntu22-node18:
+#  ubuntu22:
 #    runs-on: ubuntu-22.04
 #    steps:
 #      - uses: actions/checkout@v4
-#      - uses: actions/setup-node@v4
-#        with:
-#          node-version: 18
-#      - run: npm install && npm test
 
-#  ubuntu22-node20:
-#    runs-on: ubuntu-22.04
-#    steps:
-#      - uses: actions/checkout@v4
-#      - uses: actions/setup-node@v4
-#        with:
-#          node-version: 20
-#      - run: npm install && npm test
-
-#  ubuntu20-node18:
+#  ubuntu20:
 #    runs-on: ubuntu-20.04
 #    steps:
 #      - uses: actions/checkout@v4
-#      - uses: actions/setup-node@v4
-#        with:
-#          node-version: 18
-#      - run: npm install && npm test
 
-#  ubuntu20-node20:
-#    runs-on: ubuntu-20.04
-#    steps:
-#      - uses: actions/checkout@v4
-#      - uses: actions/setup-node@v4
-#        with:
-#          node-version: 20
-#      - run: npm install && npm test
-
-
-name: With Matrix
+name: Matrix Workflow
 
 on: push
 
@@ -50,11 +23,6 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-22.04, ubuntu-20.04]
-        node: [18, 20]
 
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node }}
-      - run: npm install && npm test
