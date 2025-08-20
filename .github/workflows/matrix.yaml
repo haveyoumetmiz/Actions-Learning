@@ -1,32 +1,60 @@
-name: Matrix Build
+#name: Without Matrix
 
-on:
-  push:
-    branches:  
-      - main  
+#on: push
 
-jobs:  
+#jobs:
+#  ubuntu22-node18:
+#    runs-on: ubuntu-22.04
+#    steps:
+#      - uses: actions/checkout@v4
+#      - uses: actions/setup-node@v4
+#        with:
+#          node-version: 18
+#      - run: npm install && npm test
+
+#  ubuntu22-node20:
+#    runs-on: ubuntu-22.04
+#    steps:
+#      - uses: actions/checkout@v4
+#      - uses: actions/setup-node@v4
+#        with:
+#          node-version: 20
+#      - run: npm install && npm test
+
+#  ubuntu20-node18:
+#    runs-on: ubuntu-20.04
+#    steps:
+#      - uses: actions/checkout@v4
+#      - uses: actions/setup-node@v4
+#        with:
+#          node-version: 18
+#      - run: npm install && npm test
+
+#  ubuntu20-node20:
+#    runs-on: ubuntu-20.04
+#    steps:
+#      - uses: actions/checkout@v4
+#      - uses: actions/setup-node@v4
+#        with:
+#          node-version: 20
+#      - run: npm install && npm test
+
+
+name: With Matrix
+
+on: push
+
+jobs:
   build:
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-22.04, ubuntu-20.04]
         node: [18, 20]
-    runs-on: ${{ matrix.os }}
 
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Build
-        run: npm run build
-
-      - name: Deploy
-        run: npm run deploy
+      - run: npm install && npm test
