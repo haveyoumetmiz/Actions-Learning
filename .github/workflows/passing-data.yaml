@@ -1,0 +1,29 @@
+name: Data Passing Workflow
+
+on: [push]
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate Data
+        run: echo "some data generated in job 1" > data.txt
+
+      - name: Upload data as artifact
+        uses: actions/upload-artifact@v4   # v4 is latest
+        with:
+          name: data-artifact
+          path: data.txt
+
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download data artifact
+        uses: actions/download-artifact@v4   # v4 is latest
+        with:
+          name: data-artifact
+          path: data/
+
+      - name: Use data in job2
+        run: cat data/data.txt
