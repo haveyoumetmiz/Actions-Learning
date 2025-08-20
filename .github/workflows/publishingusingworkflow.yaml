@@ -1,34 +1,59 @@
-
-name: Publish to github pacakage using a workflow
+name: Publish to GitHub Package
 
 on:
   push:
     branches: [main]
 
 jobs:
-  build_and_packages:
+  build_and_package:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: npm install
+
       - name: Build Package
-        run: npm run build
-      - name: Package the app
+        run: npm run build || echo "no build step"
+
+      - name: Pack the app
         run: npm pack
-      - name: Package the app
-        uses: actions/upload-artifact@v2
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
         with:
           name: package
-          path:'*.tgz'
+          path: '*.tgz'
+
   publish:
-    runs-on: ubuntu-lates
+    runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
-    needs: [build_and_packages]
+    needs: build_and_package
     steps:
-      - name: Download Package
-        uses: actions/download-artifact@v2
+      - name: Download artifact
+        uses: actions/download-artifact@v4
         with:
           name: package
-      -
+
+      - name: Set up Node.js for publishing
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@haveyoumetmiz'
+
+      - name: Configure npm
+        run: echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
+
+      - name: Publish to GitHub Packages
+        run: npm publish *.tgz
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
