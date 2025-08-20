@@ -17,7 +17,9 @@ jobs:
           node-version: '20'
 
       - name: Install Dependencies
-        run: npm install
+        run: |
+          cd my-js-action
+          npm install
 
       - name: Build Package
         run: npm run build || echo "no build step"
