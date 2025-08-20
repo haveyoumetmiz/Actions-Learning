@@ -17,21 +17,22 @@ jobs:
           node-version: '20'
 
       - name: Install Dependencies
-        run: |
-          cd my-js-action
-          npm install
+        run: npm install
+        working-directory: my-js-action
 
       - name: Build Package
         run: npm run build || echo "no build step"
+        working-directory: my-js-action
 
       - name: Pack the app
         run: npm pack
+        working-directory: my-js-action
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: package
-          path: '*.tgz'
+          path: my-js-action/*.tgz
 
   publish:
     runs-on: ubuntu-latest
