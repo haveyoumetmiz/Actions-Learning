@@ -1,7 +1,8 @@
 {
-  "name": "my-js-action",
+  "name": "@haveyoumetmiz/my-js-action",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
-  "dependencies": {}
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }
