@@ -14,3 +14,4 @@
 | Publishing to GCR | [![Publishing to GitHub Container Registry](https://github.com/haveyoumetmiz/Actions-Learning/actions/workflows/publishingtoGCR.yaml/badge.svg)](https://github.com/haveyoumetmiz/Actions-Learning/actions/workflows/publishingtoGCR.yaml) |
 | Scheduled Events | [![Scheduled Events](https://github.com/haveyoumetmiz/Actions-Learning/actions/workflows/scheduledevents.yaml/badge.svg)](https://github.com/haveyoumetmiz/Actions-Learning/actions/workflows/scheduledevents.yaml) |
 | Types of GitHub Actions | [![Types Of GitHub Actions](https://github.com/haveyoumetmiz/Actions-Learning/actions/workflows/workflow.yml/badge.svg)](https://github.com/haveyoumetmiz/Actions-Learning/actions/workflows/workflow.yml) |
+| Self-Hosted runner | [![Self-hosted runner](https://github.com/haveyoumetmiz/Actions-Learning/actions/workflows/Self-HostedRunner.yaml/badge.svg)](https://github.com/haveyoumetmiz/Actions-Learning/actions/workflows/Self-HostedRunner.yaml)
