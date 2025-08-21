@@ -5,11 +5,11 @@ on:
     branches: [main]
 
 jobs:
-  example:
+  Environment-Variable:
     runs-on: ubuntu-latest
     env:
       var: "Hello env variable"
 
     steps:
       - name: Display Environment Variable
-        run: echo "This is my env variable$var "
+        run: echo "This is $var "
