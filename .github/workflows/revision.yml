@@ -1,0 +1,71 @@
+name: Revision
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  revision:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        if: ${{ success() }} # Returns true if all previous steps have succeeded.
+        run: echo "Deploying 🚀"
+
+      - name: Cleanup
+        if: ${{ always() }} # Always true. Runs no matter what happened before (fail, cancel, or success).
+        run: echo "Cleaning temp files 🧹"
+
+      - name: Cancel alert
+        if: ${{ cancelled() }} # Returns true if the workflow was cancelled (like someone manually stops it, or another job cancels it).
+        run: echo "Workflow got cancelled ⚠️"
+
+      - name: Report failure
+        if: ${{ failure() }} # Returns true if any previous step failed.
+        run: echo "Something went wrong 💥"
+
+  service-containers:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:13
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: pass
+          POSTGRES_DB: mydb
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run tests
+        run: |
+          psql -h localhost -U user -d mydb -c "SELECT 1;"
+          echo "Running app tests 🚀"
+          
+  demo-expressions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check contains
+        run: echo "${{ contains('hello world', 'hello') }}"
+
+      - name: Check startsWith
+        run: echo "${{ startsWith('hello world', 'hello') }}"
+
+      - name: Check endsWith
+        run: echo "${{ endsWith('hello world', 'world') }}"
+
+      - name: Format string
+        run: echo "${{ format('Hello {0} {1} {2}', 'Mona', 'the', 'Octocat') }}"
+
+      - name: Join array
+        run: echo "${{ join(fromJSON('["bug","urgent","help wanted"]'), ', ') }}"
+
+      - name: Convert to JSON
+        run: echo "${{ toJSON(github.event.repository) }}"
+
+      - name: Convert from JSON
+        run: echo "${{ fromJSON('["apple","banana","cherry"]')[1] }}" # banana
+
+      - name: Hash a file
+        run: echo "${{ hashFiles('package-lock.json') }}"
